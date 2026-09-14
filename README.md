@@ -145,16 +145,12 @@ Learning security concepts, experimenting with tools, and exploring the intersec
 
 ## 🎯 Current Focus
 
-<p align="center">
-
-| Area | Focus |
-|:---:|:---|
-| 🤖 **Artificial Intelligence** | Learning & Building |
-| 🧠 **Machine Learning** | Experimenting |
-| 🔐 **Cybersecurity** | Exploring |
-| 🌐 **Web Development** | Building |
-
-</p>
+```text
+Artificial Intelligence   ███████████████████░   Learning & Building
+Machine Learning          ██████████████████░░   Experimenting
+Cybersecurity             ███████████████░░░░░   Exploring
+Web Development           ██████████████░░░░░░   Building
+````
 
 ---
 
@@ -178,3 +174,44 @@ Development
   ├── JavaScript / TypeScript
   ├── Databases
   └── Git & GitHub
+```
+
+---
+
+## 🤝 Let's Connect
+
+<p align="center">
+  <a href="mailto:dhananjayrshaju2503@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://linkedin.com/in/dhananjayrshaju">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://instagram.com/dh6xxn">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />
+  </a>
+</p>
+
+---
+
+## 🐍 Contribution Snake
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./profile/github-snake.svg" />
+    <img src="./profile/github-snake.svg" width="100%" alt="GitHub Contribution Snake" />
+  </picture>
+</p>
+
+---
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif" width="100%" alt="Space Shooter"/>
+</p>
+
+<p align="center">
+  <strong>Thanks for visiting my profile! 🚀</strong>
+</p>
+```
+
