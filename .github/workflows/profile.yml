@@ -1,3 +1,4 @@
+
 name: Update GitHub Profile
 
 on:
@@ -63,25 +64,6 @@ jobs:
           mkdir -p profile
           cp /metrics_renders/contribution-calendar.svg profile/contribution-calendar.svg
 
-      # Achievements
-      - name: Generate achievements
-        uses: lowlighter/metrics@latest
-        with:
-          filename: achievements.svg
-          user: dh6xxn
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: ""
-          plugin_achievements: yes
-          plugin_achievements_display: detailed
-          output_action: none
-          config_timezone: Asia/Kolkata
-          plugins_errors_fatal: yes
-
-      - name: Copy achievements
-        run: |
-          mkdir -p profile
-          cp /metrics_renders/achievements.svg profile/achievements.svg
-
       # Contribution Snake
       - name: Generate contribution snake
         uses: Platane/snk/svg-only@v3
@@ -90,6 +72,21 @@ jobs:
           outputs: |
             profile/github-snake.svg?palette=github-light
             profile/github-snake-dark.svg?palette=github-dark
+
+      # Verify generated assets
+      - name: Verify generated profile assets
+        run: |
+          echo "Generated profile assets:"
+          ls -lh profile/
+
+          test -f profile/stats.svg
+          test -f profile/top-langs.svg
+          test -f profile/streak.svg
+          test -f profile/contribution-calendar.svg
+          test -f profile/github-snake.svg
+          test -f profile/github-snake-dark.svg
+
+          echo "All required profile assets were generated successfully."
 
       # Commit generated files
       - name: Commit generated profile assets
@@ -105,4 +102,3 @@ jobs:
             git commit -m "chore: update GitHub profile"
             git push
           fi
-
