@@ -91,27 +91,38 @@ I'm **Dhananjay R Shaju**, an AI/ML student interested in building practical tec
 
 ---
 
-## 📊 GitHub Stats
+## 📊 GitHub Analytics
 
 <p align="center">
-  <a href="https://github.com/dh6xxn">
-    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=dh6xxn&show_icons=true&theme=dark&hide_border=true&border_radius=10" />
-  </a>
-  <a href="https://github.com/dh6xxn">
-    <img height="180em" src="https://streak-stats.demolab.com/?user=dh6xxn&theme=dark&hide_border=true" />
-  </a>
+  <img src="./metrics.svg" alt="GitHub Metrics" width="100%" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=dh6xxn&layout=compact&theme=dark&hide_border=true&border_radius=10&langs_count=8" />
+  <img src="https://streak-stats.demolab.com/?user=dh6xxn&theme=dark&hide_border=true" alt="GitHub Streak" />
 </p>
 
 ---
 
-## 🏆 GitHub Trophies
+## 🏆 GitHub Achievements
 
 <p align="center">
-  <img src="https://trophy.ryglcloud.net/?username=dh6xxn&theme=dark&no-frame=true&no-bg=true&margin-w=4" />
+  <img src="./metrics-achievements.svg" alt="GitHub Achievements" width="100%" />
+</p>
+
+---
+
+## 💻 Language Activity
+
+<p align="center">
+  <img src="./metrics-languages.svg" alt="Most Used Languages" width="100%" />
+</p>
+
+---
+
+## 📈 Contribution Activity
+
+<p align="center">
+  <img src="./metrics-calendar.svg" alt="GitHub Contribution Calendar" width="100%" />
 </p>
 
 ---
@@ -138,9 +149,19 @@ I'm **Dhananjay R Shaju**, an AI/ML student interested in building practical tec
   </a>
 </p>
 
+---
+
+## 🐍 Contribution Activity
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif" width="100%" alt="Space Shooter"/>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./github-snake.svg" />
+    <img src="./github-snake.svg" alt="GitHub Contribution Snake" width="100%" />
+  </picture>
 </p>
+
+---
 
 <p align="center">
   <strong>Thanks for visiting my profile! 🚀</strong>
