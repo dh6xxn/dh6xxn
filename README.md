@@ -1,97 +1,101 @@
-<img src="https://capsule-render.vercel.app/api?type=venom&height=220&color=0:000000,100:a371f7&text=Dhananjay%20R%20Shaju&fontSize=58&fontColor=FFFFFF&animation=fadeIn&fontAlignY=40" width="100%"/>
+<div align="center">
 
-<p align="center">
-  <img src="https://u8views.com/api/v1/github/profiles/104670175/views/day-week-month-total-count.svg" alt="Profile Views"/>
-</p>
+# Dhananjay R Shaju
 
-<h2 align="center">AI/ML Enthusiast • Cybersecurity Explorer • Builder</h2>
+**AI/ML • Developer Tools • Backend Engineering • Open Source**
 
-<p align="center">
-  <em>Learning, experimenting, and building things with AI and technology.</em>
-</p>
+Building practical systems and turning ideas into usable software.
 
-<p align="center">
-  <a href="mailto:dhananjayrshaju2503@gmail.com">
-    <img src="https://img.shields.io/badge/Email-00FFFF?style=for-the-badge&logo=gmail&logoColor=black" />
-  </a>
-  <a href="https://linkedin.com/in/dhananjayrshaju">
-    <img src="https://img.shields.io/badge/LinkedIn-00FFFF?style=for-the-badge&logo=linkedin&logoColor=black" />
-  </a>
-  <a href="https://instagram.com/dh6xxn">
-    <img src="https://img.shields.io/badge/Instagram-00FFFF?style=for-the-badge&logo=instagram&logoColor=black" />
-  </a>
-</p>
+[![GitHub](https://img.shields.io/badge/GitHub-dh6xxn-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dh6xxn)
+[![OpenAPI Guardian](https://img.shields.io/badge/OpenAPI%20Guardian-v0.2.0-0ea5e9?style=for-the-badge&logo=openapiinitiative&logoColor=white)](https://github.com/dh6xxn/openapi-guardian)
+[![License](https://img.shields.io/badge/OpenAPI%20Guardian-MIT-10b981?style=for-the-badge)](https://github.com/dh6xxn/openapi-guardian/blob/main/LICENSE)
+
+</div>
+
+---
+
+## 🛡️ Open Source
+
+### OpenAPI Guardian
+
+**TypeScript-first OpenAPI contract testing and semantic breaking-change detection for APIs.**
+
+I built and maintain **OpenAPI Guardian**, an open-source developer tool that turns an OpenAPI contract into executable checks for API implementations and CI pipelines.
+
+```text
+OpenAPI contract
+       │
+       ├── Validate
+       ├── Test live API
+       └── Detect breaking changes
+               │
+               ▼
+          CI / developer feedback
+```
+
+**Project:** [github.com/dh6xxn/openapi-guardian](https://github.com/dh6xxn/openapi-guardian)  
+**Docs:** [dh6xxn.github.io/openapi-guardian](https://dh6xxn.github.io/openapi-guardian/)  
+**Latest release:** [v0.2.0](https://github.com/dh6xxn/openapi-guardian/releases/tag/v0.2.0)
+
+### What it currently does
+
+- OpenAPI 3.0.x / 3.1.x JSON and YAML loading
+- Local `$ref` resolution
+- Schema-based representative request generation
+- Live API contract testing
+- Response/status validation
+- Semantic API contract diffing
+- Breaking-change detection
+- JSON output and CI-friendly exit codes
+- Automated CI plus a live JSONPlaceholder smoke test
+
+> OpenAPI Guardian is an early-stage functional developer tool, not a replacement for mature API fuzzing platforms.
 
 ---
 
 ## 👋 About Me
 
-I'm **Dhananjay R Shaju**, an AI/ML student passionate about building practical technology and exploring the intersection of **Artificial Intelligence, Machine Learning, and Cybersecurity**.
+I'm **Dhananjay R Shaju**, an AI/ML student who likes building practical software across **AI/ML, backend systems, developer tooling, and cybersecurity**.
 
-* 🤖 Exploring **Artificial Intelligence & Machine Learning**
-* 🔐 Exploring **Cybersecurity & ethical security**
-* 🧠 Learning how intelligent systems work and how to build them
-* 🛠️ Turning ideas into practical projects
-* 🌱 Continuously improving my development and ML skills
-* 🤝 Open to collaborating on interesting **AI/ML & Cybersecurity projects**
-* 🚀 Always looking for something new to build
+- 🤖 AI / ML and intelligent systems
+- ⚙️ Backend engineering and APIs
+- 🛠️ Developer tools and automation
+- 🔐 Cybersecurity and secure development
+- 🚀 Open-source projects and collaboration
 
 ---
 
-## 🧠 What I'm Exploring
+## 🧠 Current Stack
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Artificial%20Intelligence-000000?style=for-the-badge&logo=openai&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Machine%20Learning-000000?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Cybersecurity-000000?style=for-the-badge&logo=kalilinux&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Deep%20Learning-000000?style=for-the-badge&logo=pytorch&logoColor=white"/>
+  <img src="https://skillicons.dev/icons?i=python,javascript,typescript,html,css,pytorch,tensorflow,sklearn,mysql,postgresql,sqlite,git,github,vscode,linux" />
 </p>
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 What I'm Building
 
-### 💻 Languages
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,javascript,typescript" />
-</p>
-
-### 🌐 Web Development
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css" />
-</p>
-
-### 🤖 AI / ML
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=pytorch,tensorflow,sklearn" />
-</p>
-
-### 🗄️ Databases
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=mysql,postgresql,sqlite" />
-</p>
-
-### ⚙️ Tools & Environment
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=git,github,vscode,linux" />
-</p>
+| Project | What it is |
+| --- | --- |
+| 🛡️ [OpenAPI Guardian](https://github.com/dh6xxn/openapi-guardian) | Open-source API contract testing and semantic breaking-change detection CLI |
+| 🤖 AI Systems | Practical AI/ML applications and intelligent automation |
+| ⚙️ Backend Tools | APIs, developer infrastructure, and automation workflows |
 
 ---
 
-## 📊 GitHub Statistics
+## 🤝 Open to Collaboration
+
+I’m interested in collaborating on **open-source developer tools, AI/ML systems, backend engineering, and security-focused projects**.
+
+If you're contributing to OpenAPI Guardian, start with the repository's [contributing guide](https://github.com/dh6xxn/openapi-guardian/blob/main/CONTRIBUTING.md).
+
+---
+
+## 📊 GitHub Activity
 
 <p align="center">
-  <a href="https://github.com/dh6xxn">
-    <img height="180" src="./profile/stats.svg" alt="GitHub Statistics" />
-  </a>
-  <a href="https://github.com/dh6xxn">
-    <img height="180" src="./profile/streak.svg" alt="GitHub Streak" />
-  </a>
+  <img src="./profile/stats.svg" height="180" alt="GitHub Statistics" />
+  <img src="./profile/streak.svg" height="180" alt="GitHub Streak" />
 </p>
 
 <p align="center">
@@ -100,123 +104,18 @@ I'm **Dhananjay R Shaju**, an AI/ML student passionate about building practical 
 
 ---
 
-## 📈 Contribution Activity
+## 📫 Connect
 
 <p align="center">
-  <img src="./profile/contribution-calendar.svg" width="100%" alt="GitHub Contribution Activity" />
-</p>
-
-## 🐍 Contribution Snake
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="./profile/github-snake.svg" />
-    <img src="./profile/github-snake.svg" width="100%" alt="GitHub Contribution Snake" />
-  </picture>
+  <a href="mailto:dhananjayrshaju2503@gmail.com">Email</a> •
+  <a href="https://linkedin.com/in/dhananjayrshaju">LinkedIn</a> •
+  <a href="https://github.com/dh6xxn">GitHub</a>
 </p>
 
 ---
 
+<div align="center">
 
-## 🏆 GitHub Trophies
+**Build useful things. Share them. Improve them.**
 
-<p align="center">
-  <img
-    src="https://trophy.ryglcloud.net/?username=dh6xxn&theme=dark&no-frame=true&no-bg=true&margin-w=10&row=1&column=6"
-    alt="Dhananjay R Shaju's GitHub Trophies"
-    width="90%"
-  />
-</p>
-
-
-## 🚀 What I'm Building
-
-<p align="center">
-  <em>Turning ideas into projects, experiments into experience, and code into useful things.</em>
-</p>
-
-<table align="center">
-<tr>
-<td width="50%" align="center">
-
-### 🤖 AI / ML
-
-Exploring machine learning, intelligent systems, automation, and practical AI applications.
-
-</td>
-<td width="50%" align="center">
-
-### 🔐 Cybersecurity
-
-Learning security concepts, experimenting with tools, and exploring the intersection of security and technology.
-
-</td>
-</tr>
-</table>
-
----
-
-## 🎯 Current Focus
-
-```text
-Artificial Intelligence   ███████████████████░   Learning & Building
-Machine Learning          ██████████████████░░   Experimenting
-Cybersecurity             ███████████████░░░░░   Exploring
-Web Development           ██████████████░░░░░░   Building
-````
-
----
-
-## 🌱 Learning Journey
-
-```text
-AI / ML
-  ├── Machine Learning
-  ├── Deep Learning
-  ├── Model Development
-  └── Practical AI Projects
-
-Cybersecurity
-  ├── Security Fundamentals
-  ├── Ethical Hacking
-  ├── Security Tools
-  └── Secure Development
-
-Development
-  ├── Python
-  ├── JavaScript / TypeScript
-  ├── Databases
-  └── Git & GitHub
-```
-
----
-
-## 🤝 Let's Connect
-
-<p align="center">
-  <a href="mailto:dhananjayrshaju2503@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="https://linkedin.com/in/dhananjayrshaju">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://instagram.com/dh6xxn">
-    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />
-  </a>
-</p>
-
-
-
-
----
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif" width="100%" alt="Space Shooter"/>
-</p>
-
-<p align="center">
-  <strong>Thanks for visiting my profile! 🚀</strong>
-</p>
-```
-
+</div>
