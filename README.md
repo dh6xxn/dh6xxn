@@ -119,11 +119,7 @@ I'm **Dhananjay R Shaju**, an AI/ML student passionate about building practical 
 ---
 
 ## 🏆 GitHub Trophies
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=dh6xxn&theme=darkhub&no-frame=true&no-bg=true&margin-w=4" width="100%" alt="GitHub Trophies" />
-</p>
-
+![](https://github-profile-trophy.vercel.app/?username=dh6xxn&theme=radical&no-frame=false&no-bg=true&margin-w=4)
 ---
 
 ## 🚀 What I'm Building
