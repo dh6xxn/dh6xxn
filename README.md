@@ -4,7 +4,7 @@
   <img src="https://u8views.com/api/v1/github/profiles/104670175/views/day-week-month-total-count.svg" alt="Profile Views"/>
 </p>
 
-<h2 align="center">AI/ML Enthusiast • Cybersecurity Explorer • Builder</h2>
+<h2 align="center">AI/ML Enthusiast • Cybersecurity Explorer • Open Source Developer</h2>
 
 <p align="center">
   <em>Learning, experimenting, and building things with AI and technology.</em>
