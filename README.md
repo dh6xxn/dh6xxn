@@ -1,21 +1,147 @@
-[![dh6xxn profile views](https://u8views.com/api/v1/github/profiles/104670175/views/day-week-month-total-count.svg)](https://u8views.com/github/dh6xxn)
-- 👋 Hi, I’m dhananjay
-- 👀 I’m interested in ai & cybersec
-- 🌱 I’m currently learning mechine learning
-- 💞️ I’m looking to collaborate on ai & cyber sec
-- 📫 How to reach me dhananjayrshaju2503@gmail.com
-# 📊 GitHub Stats:
-![](https://github-readme-stats.shion.dev/api?username=dh6xxn&theme=dark&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://streak-stats.demolab.com/?user=dh6xxn&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api/top-langs/?username=dh6xxn&theme=dark&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+<img src="https://capsule-render.vercel.app/api?type=venom&height=220&color=0:000000,100:a371f7&text=Dhananjay%20R%20Shaju&fontSize=58&fontColor=FFFFFF&animation=fadeIn&fontAlignY=40" width="100%"/>
 
-## 🌐 Socials:
+<p align="center">
+  <img src="https://u8views.com/api/v1/github/profiles/104670175/views/day-week-month-total-count.svg" alt="Profile Views"/>
+</p>
 
-<!---
-Uniquedrs/Uniquedrs is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+<h2 align="center">AI/ML Enthusiast • Cybersecurity Explorer • Builder</h2>
 
+<p align="center">
+  <em>Learning, experimenting, and building things with AI and technology.</em>
+</p>
 
+<p align="center">
+  <a href="mailto:dhananjayrshaju2503@gmail.com">
+    <img src="https://img.shields.io/badge/Email-00FFFF?style=for-the-badge&logo=gmail&logoColor=black" />
+  </a>
+  <a href="https://linkedin.com/in/dhananjayrshaju">
+    <img src="https://img.shields.io/badge/LinkedIn-00FFFF?style=for-the-badge&logo=linkedin&logoColor=black" />
+  </a>
+  <a href="https://instagram.com/dh6xxn">
+    <img src="https://img.shields.io/badge/Instagram-00FFFF?style=for-the-badge&logo=instagram&logoColor=black" />
+  </a>
+</p>
 
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/dh6xxn) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/dhananjayrshaju) 
+---
+
+## 👋 About Me
+
+I'm **Dhananjay R Shaju**, an AI/ML student interested in building practical technology and exploring the intersection of **Artificial Intelligence, Machine Learning, and Cybersecurity**.
+
+* 🤖 Exploring **Artificial Intelligence & Machine Learning**
+* 🔐 Interested in **Cybersecurity**
+* 🛠️ Building and experimenting with **real-world projects**
+* 🌱 Currently improving my skills in **Machine Learning**
+* 🤝 Open to collaborating on interesting **AI/ML & Cybersecurity projects**
+* 🚀 Always looking for ideas that can be turned into something useful
+
+---
+
+## 🧠 Areas I'm Exploring
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Artificial%20Intelligence-000000?style=for-the-badge&logo=openai&logoColor=white"/>
+<img src="https://img.shields.io/badge/Machine%20Learning-000000?style=for-the-badge&logo=scikitlearn&logoColor=white"/>
+<img src="https://img.shields.io/badge/Cybersecurity-000000?style=for-the-badge&logo=kalilinux&logoColor=white"/>
+
+</p>
+
+---
+
+## 🛠️ Tech Stack
+
+### 💻 Languages
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" width="45" />
+</p>
+
+### 🌐 Web
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="45" />
+</p>
+
+### 🗄️ Databases
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://www.vectorlogo.zone/logos/sqlite/sqlite-icon.svg" width="45" />
+</p>
+
+### ⚙️ Tools
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" width="45" />
+  &nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vscode/vscode-original.svg" width="45" />
+</p>
+
+---
+
+## 📊 GitHub Stats
+
+<p align="center">
+  <a href="https://github.com/dh6xxn">
+    <img height="180em" src="https://github-readme-stats-eight-theta.vercel.app/api?username=dh6xxn&show_icons=true&theme=dark&hide_border=true&border_radius=10" />
+  </a>
+  <a href="https://github.com/dh6xxn">
+    <img height="180em" src="https://streak-stats.demolab.com/?user=dh6xxn&theme=dark&hide_border=true" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=dh6xxn&layout=compact&theme=dark&hide_border=true&border_radius=10&langs_count=8" />
+</p>
+
+---
+
+## 🏆 GitHub Trophies
+
+<p align="center">
+  <img src="https://trophy.ryglcloud.net/?username=dh6xxn&theme=dark&no-frame=true&no-bg=true&margin-w=4" />
+</p>
+
+---
+
+## 🚀 What I'm Building
+
+<p align="center">
+  <em>Turning ideas into projects, experiments into experience, and code into useful things.</em>
+</p>
+
+---
+
+## 🤝 Let's Connect
+
+<p align="center">
+  <a href="mailto:dhananjayrshaju2503@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+  <a href="https://linkedin.com/in/dhananjayrshaju">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="https://instagram.com/dh6xxn">
+    <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" />
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/czl9707/gh-space-shooter/main/example.gif" width="100%" alt="Space Shooter"/>
+</p>
+
+<p align="center">
+  <strong>Thanks for visiting my profile! 🚀</strong>
+</p>
