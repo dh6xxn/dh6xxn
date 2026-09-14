@@ -1,0 +1,107 @@
+name: Update GitHub Profile
+
+on:
+  schedule:
+    - cron: "17 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      # GitHub Statistics
+      - name: Generate GitHub statistics
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=dh6xxn&show_icons=true&theme=dark&hide_border=true&border_radius=12&include_all_commits=true
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      # Top Languages
+      - name: Generate top languages
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=dh6xxn&layout=compact&theme=dark&hide_border=true&border_radius=12&langs_count=8
+          path: profile/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      # GitHub Streak
+      - name: Generate GitHub streak
+        uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+        with:
+          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&timezone=Asia/Kolkata&disable_animations=true
+          path: profile/streak.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Contribution Calendar
+      - name: Generate contribution calendar
+        uses: lowlighter/metrics@v3.34
+        with:
+          filename: contribution-calendar.svg
+          user: dh6xxn
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: ""
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          output_action: none
+          config_timezone: Asia/Kolkata
+          plugins_errors_fatal: yes
+
+      - name: Copy contribution calendar
+        run: |
+          mkdir -p profile
+          cp /metrics_renders/contribution-calendar.svg profile/contribution-calendar.svg
+
+      # Achievements
+      - name: Generate achievements
+        uses: lowlighter/metrics@v3.34
+        with:
+          filename: achievements.svg
+          user: dh6xxn
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: ""
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          output_action: none
+          config_timezone: Asia/Kolkata
+          plugins_errors_fatal: yes
+
+      - name: Copy achievements
+        run: |
+          mkdir -p profile
+          cp /metrics_renders/achievements.svg profile/achievements.svg
+
+      # Contribution Snake
+      - name: Generate contribution snake
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: dh6xxn
+          outputs: |
+            profile/github-snake.svg?palette=github-light
+            profile/github-snake-dark.svg?palette=github-dark
+
+      # Commit generated files
+      - name: Commit generated profile assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add profile/
+
+          if git diff --cached --quiet; then
+            echo "No profile changes to commit."
+          else
+            git commit -m "chore: update GitHub profile"
+            git push
+          fi
