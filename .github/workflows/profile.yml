@@ -1,3 +1,4 @@
+```yaml
 name: Update GitHub Profile
 
 on:
@@ -46,7 +47,7 @@ jobs:
 
       # Contribution Calendar
       - name: Generate contribution calendar
-        uses: lowlighter/metrics@v3.34
+        uses: lowlighter/metrics@latest
         with:
           filename: contribution-calendar.svg
           user: dh6xxn
@@ -65,7 +66,7 @@ jobs:
 
       # Achievements
       - name: Generate achievements
-        uses: lowlighter/metrics@v3.34
+        uses: lowlighter/metrics@latest
         with:
           filename: achievements.svg
           user: dh6xxn
@@ -105,3 +106,4 @@ jobs:
             git commit -m "chore: update GitHub profile"
             git push
           fi
+```
