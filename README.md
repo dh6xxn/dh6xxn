@@ -106,12 +106,22 @@ I'm **Dhananjay R Shaju**, an AI/ML student passionate about building practical 
   <img src="./profile/contribution-calendar.svg" width="100%" alt="GitHub Contribution Activity" />
 </p>
 
----
-
-## 🏆 Achievements
+## 🐍 Contribution Snake
 
 <p align="center">
-  <img src="./profile/achievements.svg" width="100%" alt="GitHub Achievements" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="./profile/github-snake.svg" />
+    <img src="./profile/github-snake.svg" width="100%" alt="GitHub Contribution Snake" />
+  </picture>
+</p>
+
+---
+
+## 🏆 GitHub Trophies
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=dh6xxn&theme=darkhub&no-frame=true&no-bg=true&margin-w=4" width="100%" alt="GitHub Trophies" />
 </p>
 
 ---
@@ -192,17 +202,8 @@ Development
   </a>
 </p>
 
----
 
-## 🐍 Contribution Snake
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="./profile/github-snake.svg" />
-    <img src="./profile/github-snake.svg" width="100%" alt="GitHub Contribution Snake" />
-  </picture>
-</p>
 
 ---
 
