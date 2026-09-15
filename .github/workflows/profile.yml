@@ -50,7 +50,7 @@ jobs:
         with:
           filename: contribution-calendar.svg
           user: dh6xxn
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_TOKEN }}
           base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
