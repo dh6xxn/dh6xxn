@@ -45,27 +45,90 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Contribution Calendar
+      # Generate from GitHub's public contribution calendar instead of the
+      # lowlighter/metrics plugin, so this does not depend on PAT type/scope.
       - name: Generate contribution calendar
-        uses: lowlighter/metrics@v3.34
-        with:
-          filename: contribution-calendar.svg
-          user: dh6xxn
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: ""
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          output_action: none
-          config_timezone: Asia/Kolkata
-          plugins_errors_fatal: no
-
-      - name: Copy contribution calendar
+        env:
+          GITHUB_USER: dh6xxn
         run: |
-          mkdir -p profile
-          if [ -f /metrics_renders/contribution-calendar.svg ]; then
-            cp /metrics_renders/contribution-calendar.svg profile/contribution-calendar.svg
-          else
-            echo "Contribution calendar was not generated; continuing without it."
-          fi
+          python - <<'PY'
+          import datetime as dt
+          import html
+          import re
+          import urllib.request
+          from pathlib import Path
+
+          user = "dh6xxn"
+          url = f"https://github.com/users/{user}/contributions"
+          request = urllib.request.Request(
+              url,
+              headers={"User-Agent": "github-actions-profile-calendar"},
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              page = response.read().decode("utf-8", "replace")
+
+          cells = re.findall(
+              r'<td[^>]*class="[^"]*ContributionCalendar-day[^"]*"[^>]*data-date="([0-9-]+)"[^>]*data-level="([0-4])"[^>]*[^>]*>',
+              page,
+          )
+          if not cells:
+              # Attribute order has changed on GitHub before; accept either order.
+              cells = re.findall(
+                  r'<td[^>]*data-date="([0-9-]+)"[^>]*data-level="([0-4])"[^>]*class="[^"]*ContributionCalendar-day[^"]*"[^>]*>',
+                  page,
+              )
+          if not cells:
+              raise RuntimeError("GitHub contribution calendar cells were not found")
+
+          data = {date: int(level) for date, level in cells}
+          dates = sorted(data)
+          start = dt.date.fromisoformat(dates[0])
+          end = dt.date.fromisoformat(dates[-1])
+
+          # Align to Sunday and build a 7-row x N-column GitHub-style heatmap.
+          grid_start = start - dt.timedelta(days=(start.weekday() + 1) % 7)
+          grid_end = end + dt.timedelta(days=(6 - ((end.weekday() + 1) % 7)) % 7)
+          weeks = ((grid_end - grid_start).days + 1) // 7
+
+          cell = 12
+          gap = 3
+          left = 24
+          top = 22
+          width = left + weeks * (cell + gap)
+          height = top + 7 * (cell + gap) + 8
+          colors = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
+
+          parts = [
+              f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+              '<rect width="100%" height="100%" rx="8" fill="#0d1117"/>',
+              f'<text x="12" y="15" fill="#f0f6fc" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="11" font-weight="600">{html.escape(user)}\'s contributions</text>',
+          ]
+
+          for i in range(weeks):
+              week_date = grid_start + dt.timedelta(days=i * 7)
+              x = left + i * (cell + gap)
+              if week_date.day <= 7 or i == 0:
+                  parts.append(
+                      f'<text x="{x}" y="21" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="8">{week_date.strftime("%b")}</text>'
+                  )
+              for row in range(7):
+                  day = grid_start + dt.timedelta(days=i * 7 + row)
+                  level = data.get(day.isoformat(), 0)
+                  y = top + row * (cell + gap)
+                  title = f"{day.isoformat()}: contribution level {level}"
+                  parts.append(
+                      f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2" fill="{colors[level]}"><title>{html.escape(title)}</title></rect>'
+                  )
+
+          parts.append('<text x="12" y="%d" fill="#8b949e" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="8">Less</text>' % (height - 4))
+          legend_x = 40
+          for level in range(5):
+              parts.append(f'<rect x="{legend_x + level * 15}" y="{height - 12}" width="10" height="10" rx="2" fill="{colors[level]}"/>')
+          parts.append('</svg>')
+
+          Path("profile/contribution-calendar.svg").write_text("\n".join(parts), encoding="utf-8")
+          print(f"Generated contribution calendar from {dates[0]} through {dates[-1]} ({len(data)} days).")
+          PY
 
       # Contribution Snake
       - name: Generate contribution snake
@@ -85,16 +148,11 @@ jobs:
           test -f profile/stats.svg
           test -f profile/top-langs.svg
           test -f profile/streak.svg
+          test -f profile/contribution-calendar.svg
           test -f profile/github-snake.svg
           test -f profile/github-snake-dark.svg
 
-          if [ -f profile/contribution-calendar.svg ]; then
-            echo "Contribution calendar generated successfully."
-          else
-            echo "Contribution calendar unavailable; other profile assets are valid."
-          fi
-
-          echo "Required profile assets were generated successfully."
+          echo "All required profile assets were generated successfully."
 
       # Commit generated files
       - name: Commit generated profile assets
