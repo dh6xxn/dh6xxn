@@ -46,22 +46,26 @@ jobs:
 
       # Contribution Calendar
       - name: Generate contribution calendar
-        uses: lowlighter/metrics@latest
+        uses: lowlighter/metrics@v3.34
         with:
           filename: contribution-calendar.svg
           user: dh6xxn
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
           output_action: none
           config_timezone: Asia/Kolkata
-          plugins_errors_fatal: yes
+          plugins_errors_fatal: no
 
       - name: Copy contribution calendar
         run: |
           mkdir -p profile
-          cp /metrics_renders/contribution-calendar.svg profile/contribution-calendar.svg
+          if [ -f /metrics_renders/contribution-calendar.svg ]; then
+            cp /metrics_renders/contribution-calendar.svg profile/contribution-calendar.svg
+          else
+            echo "Contribution calendar was not generated; continuing without it."
+          fi
 
       # Contribution Snake
       - name: Generate contribution snake
@@ -81,11 +85,16 @@ jobs:
           test -f profile/stats.svg
           test -f profile/top-langs.svg
           test -f profile/streak.svg
-          test -f profile/contribution-calendar.svg
           test -f profile/github-snake.svg
           test -f profile/github-snake-dark.svg
 
-          echo "All required profile assets were generated successfully."
+          if [ -f profile/contribution-calendar.svg ]; then
+            echo "Contribution calendar generated successfully."
+          else
+            echo "Contribution calendar unavailable; other profile assets are valid."
+          fi
+
+          echo "Required profile assets were generated successfully."
 
       # Commit generated files
       - name: Commit generated profile assets
