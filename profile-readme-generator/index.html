@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GitHub Profile README Generator</title>
+  <meta name="description" content="Create a polished GitHub profile README and download it as Markdown.">
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#e6edf3;background:#0d1117}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#171d28 0,#0d1117 48%)}.wrap{max-width:1200px;margin:auto;padding:36px 20px}.hero{margin-bottom:24px}.eyebrow{color:#a371f7;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(34px,6vw,64px);margin:8px 0}.hero p{color:#8b949e;max-width:760px;line-height:1.6}.grid{display:grid;grid-template-columns:360px 1fr;gap:20px}@media(max-width:900px){.grid{grid-template-columns:1fr}}.panel{border:1px solid #30363d;background:#0f141b;border-radius:16px;padding:18px;box-shadow:0 15px 50px #0004}.panel h2{font-size:18px;margin:0 0 16px}.field{margin:0 0 14px}.field label{display:block;font-size:12px;font-weight:700;color:#8b949e;margin-bottom:6px}.field input,.field textarea{width:100%;border:1px solid #30363d;background:#0d1117;color:#e6edf3;border-radius:10px;padding:10px 12px;font:inherit}.field textarea{min-height:92px;resize:vertical}.sections{display:grid;grid-template-columns:1fr 1fr;gap:8px}.check{display:flex;gap:8px;align-items:center;border:1px solid #21262d;border-radius:10px;padding:9px;color:#c9d1d9;font-size:13px}.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.button{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}.primary{background:#a371f7;color:#fff}.secondary{background:#21262d;color:#fff}.preview{position:sticky;top:20px;height:max-content}.code{white-space:pre-wrap;overflow:auto;max-height:68vh;background:#010409;border:1px solid #30363d;border-radius:12px;padding:16px;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;color:#c9d1d9}.hint{font-size:12px;color:#8b949e;margin-top:10px}.status{min-height:20px;font-size:12px;color:#7ee787;margin-top:8px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Profile README Generator</div>
+      <h1>Build your GitHub profile.</h1>
+      <p>Fill in your details, choose the sections you want, preview the Markdown, and download a ready-to-use <code>README.md</code>.</p>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Profile details</h2>
+        <div class="field"><label for="name">Name</label><input id="name" value="Your Name"></div>
+        <div class="field"><label for="headline">Headline</label><input id="headline" value="AI/ML Enthusiast • Open Source Developer"></div>
+        <div class="field"><label for="intro">Intro</label><textarea id="intro">Learning, experimenting, and building things with technology.</textarea></div>
+        <div class="field"><label for="about">About me</label><textarea id="about">I'm passionate about building practical software, learning new technologies, and turning ideas into useful projects.</textarea></div>
+        <div class="field"><label for="focus">Current focus</label><textarea id="focus">Artificial Intelligence\nMachine Learning\nWeb Development\nOpen Source</textarea></div>
+        <div class="field"><label for="github">GitHub username</label><input id="github" value="yourusername"></div>
+        <div class="field"><label for="email">Email</label><input id="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="linkedin">LinkedIn URL</label><input id="linkedin" placeholder="https://linkedin.com/in/yourname"></div>
+        <div class="field"><label for="instagram">Instagram URL</label><input id="instagram" placeholder="https://instagram.com/yourname"></div>
+
+        <h2>Sections</h2>
+        <div class="sections" id="sections"></div>
+        <div class="actions"><button class="button primary" id="download">Download README.md</button><button class="button secondary" id="copy">Copy Markdown</button></div>
+        <div class="status" id="status"></div>
+      </div>
+
+      <div class="panel preview">
+        <h2>Markdown preview</h2>
+        <pre class="code" id="output"></pre>
+        <div class="hint">Tip: create a public GitHub repository named exactly after your GitHub username, then place this file at the repository root.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const sectionDefs=[
+      ['hero','Hero',true],['about','About Me',true],['exploring','What I\'m Exploring',true],['stack','Tech Stack',true],['stats','GitHub Statistics',true],['activity','Contribution Activity',true],['snake','Contribution Snake',true],['opensource','Open Source',true],['trophies','GitHub Trophies',true],['building','What I\'m Building',true],['focus','Current Focus',true],['journey','Learning Journey',true],['connect','Let\'s Connect',true]
+    ];
+    const sections=document.getElementById('sections');
+    sectionDefs.forEach(([id,label,checked])=>{const el=document.createElement('label');el.className='check';el.innerHTML=`<input type="checkbox" data-section="${id}" ${checked?'checked':''}> ${label}`;sections.appendChild(el)});
+
+    const ids=['name','headline','intro','about','focus','github','email','linkedin','instagram'];
+    ids.forEach(id=>document.getElementById(id).addEventListener('input',render));
+    sections.addEventListener('change',render);
+
+    function val(id){return document.getElementById(id).value.trim()}
+    function enabled(id){return document.querySelector(`[data-section="${id}"]`).checked}
+    function badge(text){return `![${text}](https://img.shields.io/badge/${encodeURIComponent(text)}-000000?style=for-the-badge)`}
+    function render(){
+      const name=val('name')||'Your Name', headline=val('headline')||'Developer', intro=val('intro')||'Building things.', about=val('about'), user=val('github')||'yourusername';
+      let md='';
+      if(enabled('hero')) md+=`<h1 align="center">${name}</h1>\n\n<p align="center"><strong>${headline}</strong></p>\n\n<p align="center"><em>${intro}</em></p>\n\n---\n\n`;
+      if(enabled('about')) md+=`## 👋 About Me\n\n${about}\n\n---\n\n`;
+      if(enabled('exploring')) md+=`## 🧠 What I'm Exploring\n\n<p align="center">${badge('Artificial Intelligence')} ${badge('Machine Learning')} ${badge('Open Source')} ${badge('Cybersecurity')}</p>\n\n---\n\n`;
+      if(enabled('stack')) md+=`## 🛠️ Tech Stack\n\n### 💻 Languages\n\n${badge('Python')} ${badge('JavaScript')} ${badge('TypeScript')}\n\n### 🌐 Web Development\n\n${badge('HTML')} ${badge('CSS')} ${badge('React')}\n\n### 🤖 AI / ML\n\n${badge('PyTorch')} ${badge('TensorFlow')} ${badge('Scikit Learn')}\n\n---\n\n`;
+      if(enabled('stats')) md+=`## 📊 GitHub Statistics\n\n<p align="center"><img src="https://github-readme-stats.vercel.app/api?username=${encodeURIComponent(user)}&show_icons=true&theme=dark&hide_border=true" alt="GitHub Statistics"></p>\n\n---\n\n`;
+      if(enabled('activity')) md+=`## 📈 Contribution Activity\n\n<p align="center"><img src="https://ghchart.rshah.org/${encodeURIComponent(user)}" alt="GitHub Contribution Activity" width="100%"></p>\n\n---\n\n`;
+      if(enabled('snake')) md+=`## 🐍 Contribution Snake\n\n<p align="center"><img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake.svg" alt="Contribution Snake"></p>\n\n---\n\n`;
+      if(enabled('opensource')) md+=`## 🚀 Open Source\n\nAdd your highlighted repositories here.\n\n---\n\n`;
+      if(enabled('trophies')) md+=`## 🏆 GitHub Trophies\n\n<p align="center"><img src="https://github-profile-trophy.vercel.app/?username=${encodeURIComponent(user)}&theme=darkhub&no-frame=true&no-bg=true&row=1&column=6" alt="GitHub Trophies"></p>\n\n---\n\n`;
+      if(enabled('building')) md+=`## 🚀 What I'm Building\n\nTurning ideas into projects, experiments into experience, and code into useful things.\n\n---\n\n`;
+      if(enabled('focus')) md+=`## 🎯 Current Focus\n\n\`\`\`text\n${val('focus')||'What I am learning and building'}\n\`\`\`\n\n---\n\n`;
+      if(enabled('journey')) md+=`## 🌱 Learning Journey\n\nAI / ML\n  ├── Learning fundamentals\n  ├── Building projects\n  └── Exploring new ideas\n\nDevelopment\n  ├── Clean code\n  ├── APIs\n  └── Open source\n\n---\n\n`;
+      if(enabled('connect')){
+        const links=[]; if(val('email'))links.push(`[Email](mailto:${val('email')})`); if(val('linkedin'))links.push(`[LinkedIn](${val('linkedin')})`); if(val('instagram'))links.push(`[Instagram](${val('instagram')})`); if(!links.length)links.push(`[GitHub](https://github.com/${encodeURIComponent(user)})`);
+        md+=`## 🤝 Let's Connect\n\n${links.join(' • ')}\n`;
+      }
+      document.getElementById('output').textContent=md.trim()+"\n";
+    }
+    function download(){const blob=new Blob([document.getElementById('output').textContent],{type:'text/markdown;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='README.md';a.click();URL.revokeObjectURL(a.href);setStatus('README.md downloaded.');}
+    async function copy(){try{await navigator.clipboard.writeText(document.getElementById('output').textContent);setStatus('Markdown copied to clipboard.')}catch(e){setStatus('Clipboard access was blocked by the browser. Use the preview to copy manually.')}}
+    function setStatus(t){document.getElementById('status').textContent=t;setTimeout(()=>document.getElementById('status').textContent='',2500)}
+    document.getElementById('download').addEventListener('click',download);document.getElementById('copy').addEventListener('click',copy);render();
+  </script>
+</body>
+</html>
