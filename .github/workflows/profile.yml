@@ -245,5 +245,10 @@ jobs:
             echo "No profile changes to commit."
           else
             git commit -m "chore: update GitHub profile"
-            git push
+            # Another profile run/manual push can land while this job is
+            # generating assets. Rebase the generated commit onto the latest
+            # main before pushing so the scheduled job cannot fail on a
+            # non-fast-forward race.
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
