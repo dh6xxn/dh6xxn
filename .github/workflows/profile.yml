@@ -3,6 +3,9 @@ name: Update GitHub Profile
 on:
   schedule:
     - cron: "17 0 * * *"
+  push:
+    paths:
+      - ".github/workflows/profile.yml"
   workflow_dispatch:
 
 permissions:
@@ -37,10 +40,12 @@ jobs:
           fail_on_error: true
 
       # GitHub Streak
+      # Use the maintained GraphQL-based generator instead of the older
+      # DenverCoder1 action, which has had recent contribution/streak issues.
       - name: Generate GitHub streak
-        uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+        uses: zients/github-readme-streak-stats@v2
         with:
-          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&timezone=Asia/Kolkata&disable_animations=true
+          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&disable_animations=true
           path: profile/streak.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
