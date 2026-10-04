@@ -40,16 +40,82 @@ jobs:
           fail_on_error: true
 
       # GitHub Streak
-      # Use the maintained GraphQL-based generator instead of the older
-      # DenverCoder1 action, which has had recent contribution/streak issues.
+      # Build the streak from the user's own authored commits across owned
+      # repositories, including private repositories accessible to METRICS_TOKEN.
       - name: Generate GitHub streak
-        uses: zients/github-readme-streak-stats@v2
-        with:
-          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&disable_animations=true&starting_year=2022
-          path: profile/streak.svg
-          # Use the user's PAT for private contribution data.
-          # Fall back to GITHUB_TOKEN if the secret is unavailable.
-          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          gh search commits --author=dh6xxn --owner=dh6xxn --limit 1000 --json commit,repository > /tmp/commits.json
+          python - <<'PY'
+          import datetime as dt
+          import json
+          import html
+          from pathlib import Path
+
+          payload = json.loads(Path('/tmp/commits.json').read_text())
+          days = set()
+          for item in payload:
+              repo = item.get('repository') or {}
+              if repo.get('isFork') is True:
+                  continue
+              author = (item.get('commit') or {}).get('author') or {}
+              date = author.get('date')
+              if date:
+                  days.add(date[:10])
+          days = {dt.date.fromisoformat(x) for x in days}
+          today = dt.datetime.now(dt.timezone.utc).date()
+          anchor = today if today in days else today - dt.timedelta(days=1)
+          current = 0
+          d = anchor
+          while d in days:
+              current += 1
+              d -= dt.timedelta(days=1)
+          longest = 0
+          best_start = best_end = None
+          start = end = None
+          for day in sorted(days):
+              if start is None:
+                  start = end = day
+              elif day == end + dt.timedelta(days=1):
+                  end = day
+              else:
+                  n = (end - start).days + 1
+                  if n > longest:
+                      longest, best_start, best_end = n, start, end
+                  start = end = day
+          if start is not None:
+              n = (end - start).days + 1
+              if n > longest:
+                  longest, best_start, best_end = n, start, end
+          latest = max(days) if days else None
+          latest_start = latest
+          if latest:
+              while latest_start - dt.timedelta(days=1) in days:
+                  latest_start -= dt.timedelta(days=1)
+          def fmt(a,b):
+              if not a: return ''
+              return a.strftime('%b %-d') if a == b else a.strftime('%b %-d') + ' - ' + b.strftime('%b %-d')
+          svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195" role="img" aria-label="dh6xxn coding streak">
+          <title>dh6xxn coding streak</title>
+          <rect width="495" height="195" rx="12" fill="#151515"/>
+          <line x1="165" y1="28" x2="165" y2="170" stroke="#E4E2E2" stroke-width="1" opacity=".35"/>
+          <line x1="330" y1="28" x2="330" y2="170" stroke="#E4E2E2" stroke-width="1" opacity=".35"/>
+          <g text-anchor="middle" font-family="Segoe UI, Ubuntu, sans-serif">
+          <text x="82.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">''' + str(len(days)) + '''</text>
+          <text x="82.5" y="116" fill="#FEFEFE" font-size="14">Active Days</text>
+          <text x="82.5" y="146" fill="#9E9E9E" font-size="12">Across owned repositories</text>
+          <circle cx="247.5" cy="71" r="40" fill="none" stroke="#FB8C00" stroke-width="5"/>
+          <text x="247.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">''' + str(current) + '''</text>
+          <text x="247.5" y="140" fill="#FB8C00" font-size="14" font-weight="700">Current Streak</text>
+          <text x="247.5" y="166" fill="#9E9E9E" font-size="12">''' + html.escape(fmt(latest_start, latest)) + '''</text>
+          <text x="412.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">''' + str(longest) + '''</text>
+          <text x="412.5" y="116" fill="#FEFEFE" font-size="14">Longest Streak</text>
+          <text x="412.5" y="146" fill="#9E9E9E" font-size="12">''' + html.escape(fmt(best_start, best_end)) + '''</text>
+          </g></svg>'''
+          Path('profile/streak.svg').write_text(svg, encoding='utf-8')
+          print(f'Generated streak: current={current}, longest={longest}, active_days={len(days)}')
+          PY
 
       # Contribution Calendar
       # Generate from GitHub's public contribution calendar instead of the
