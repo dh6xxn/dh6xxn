@@ -65,7 +65,10 @@ jobs:
                   days.add(date[:10])
           days = {dt.date.fromisoformat(x) for x in days}
           today = dt.datetime.now(dt.timezone.utc).date()
-          anchor = today if today in days else today - dt.timedelta(days=1)
+          # Anchor on the latest verified authored-commit day. This avoids
+          # resetting the card merely because GitHub's UTC date has rolled
+          # over before the profile generator runs.
+          anchor = max(days) if days else today
           current = 0
           d = anchor
           while d in days:
