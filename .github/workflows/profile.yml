@@ -45,9 +45,11 @@ jobs:
       - name: Generate GitHub streak
         uses: zients/github-readme-streak-stats@v2
         with:
-          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&disable_animations=true
+          options: user=dh6xxn&theme=dark&hide_border=true&border_radius=12&disable_animations=true&starting_year=2022
           path: profile/streak.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Use the user's PAT for private contribution data.
+          # Fall back to GITHUB_TOKEN if the secret is unavailable.
+          token: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
 
       # Contribution Calendar
       # Generate from GitHub's public contribution calendar instead of the
