@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195" role="img" aria-label="dh6xxn coding streak">
-<title>dh6xxn coding streak</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195" role="img" aria-label="dh6xxn GitHub contribution streak">
+<title>dh6xxn GitHub contribution streak</title>
 <rect width="495" height="195" rx="12" fill="#151515"/>
 <line x1="165" y1="28" x2="165" y2="170" stroke="#E4E2E2" stroke-width="1" opacity=".35"/>
 <line x1="330" y1="28" x2="330" y2="170" stroke="#E4E2E2" stroke-width="1" opacity=".35"/>
 <g text-anchor="middle" font-family="Segoe UI, Ubuntu, sans-serif">
-<text x="82.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">15</text>
-<text x="82.5" y="116" fill="#FEFEFE" font-size="14">Active Days</text>
-<text x="82.5" y="146" fill="#9E9E9E" font-size="12">Across owned repositories</text>
+<text x="82.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">221</text>
+<text x="82.5" y="116" fill="#FEFEFE" font-size="14">Contributions</text>
+<text x="82.5" y="146" fill="#9E9E9E" font-size="12">GitHub contribution calendar</text>
 <circle cx="247.5" cy="71" r="40" fill="none" stroke="#FB8C00" stroke-width="5"/>
 <text x="247.5" y="80" fill="#FEFEFE" font-size="28" font-weight="700">1</text>
 <text x="247.5" y="140" fill="#FB8C00" font-size="14" font-weight="700">Current Streak</text>
