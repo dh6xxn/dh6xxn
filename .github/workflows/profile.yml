@@ -45,8 +45,8 @@ jobs:
           HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
         run: |
           echo "METRICS_TOKEN configured: $HAS_METRICS_TOKEN"
-          # Report non-sensitive OAuth scope headers; never print the token.
-          gh api -i /user 2>/dev/null | grep -i '^x-oauth-scopes:' || true
+          # gh CLI masks the credential and reports its granted scopes.
+          gh auth status --active || true
           FROM="$(date -u -d '7 days ago' +%Y-%m-%dT00:00:00Z)"
           TO="$(date -u -d 'tomorrow' +%Y-%m-%dT00:00:00Z)"
           gh api graphql -f login=dh6xxn -f from="$FROM" -f to="$TO" -f query='
