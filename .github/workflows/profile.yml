@@ -38,6 +38,40 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: true
 
+      # Diagnose recent contribution dates using the same token as the streak card
+      - name: Diagnose recent contribution calendar
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
+          HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
+        run: |
+          echo "METRICS_TOKEN configured: $HAS_METRICS_TOKEN"
+          FROM="$(date -u -d '7 days ago' +%Y-%m-%dT00:00:00Z)"
+          TO="$(date -u -d 'tomorrow' +%Y-%m-%dT00:00:00Z)"
+          gh api graphql -f login=dh6xxn -f from="$FROM" -f to="$TO" -f query='
+            query($login:String!, $from:DateTime!, $to:DateTime!) {
+              user(login:$login) {
+                contributionsCollection(from:$from, to:$to) {
+                  contributionCalendar {
+                    totalContributions
+                    weeks { contributionDays { date contributionCount } }
+                  }
+                }
+              }
+            }
+          ' > /tmp/recent-contributions.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("/tmp/recent-contributions.json").read_text())
+          if data.get("errors"):
+              raise SystemExit(json.dumps(data["errors"]))
+          cal = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+          print("GitHub calendar total for queried range:", cal["totalContributions"])
+          for week in cal["weeks"]:
+              for day in week["contributionDays"]:
+                  print(day["date"], "=>", day["contributionCount"])
+          PY
+
       # GitHub Streak
       # Use GitHub's own contribution calendar. This counts the contribution
       # types GitHub uses on the profile instead of commit-search reconstruction.
