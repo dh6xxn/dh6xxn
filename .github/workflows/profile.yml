@@ -14,9 +14,6 @@ permissions:
 jobs:
   profile:
     runs-on: ubuntu-latest
-    env:
-      HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
-
     steps:
       - name: Checkout profile repository
         uses: actions/checkout@v4
@@ -45,9 +42,10 @@ jobs:
       # Use GitHub's own contribution calendar. This counts the contribution
       # types GitHub uses on the profile instead of commit-search reconstruction.
       - name: Generate GitHub streak
-        if: ${{ env.HAS_METRICS_TOKEN == 'true' }}
         env:
-          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
+          # Always generate the card. METRICS_TOKEN should have read:user
+          # scope to include private activity; GITHUB_TOKEN is a public-data fallback.
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           FROM="$(date -u -d '1 year ago' +%Y-%m-%dT00:00:00Z)"
           TO="$(date -u -d 'tomorrow' +%Y-%m-%dT00:00:00Z)"
