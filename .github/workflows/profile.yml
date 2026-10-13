@@ -38,68 +38,18 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: true
 
-      # Diagnose contribution visibility and recent calendar counts
-      - name: Diagnose recent contribution calendar
-        env:
-          GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
-          HAS_METRICS_TOKEN: ${{ secrets.METRICS_TOKEN != '' }}
-        run: |
-          echo "METRICS_TOKEN configured: $HAS_METRICS_TOKEN"
-          # gh CLI masks the credential and reports its granted scopes.
-          gh auth status --active || true
-          FROM="$(date -u -d '7 days ago' +%Y-%m-%dT00:00:00Z)"
-          TO="$(date -u -d 'tomorrow' +%Y-%m-%dT00:00:00Z)"
-          gh api graphql -f login=dh6xxn -f from="$FROM" -f to="$TO" -f query='
-            query($login:String!, $from:DateTime!, $to:DateTime!) {
-              user(login:$login) {
-                contributionsCollection(from:$from, to:$to) {
-                  totalCommitContributions
-                  totalIssueContributions
-                  totalPullRequestContributions
-                  totalPullRequestReviewContributions
-                  restrictedContributionsCount
-                  hasAnyRestrictedContributions
-                  earliestRestrictedContributionDate
-                  latestRestrictedContributionDate
-                  contributionCalendar {
-                    totalContributions
-                    weeks { contributionDays { date contributionCount } }
-                  }
-                }
-              }
-            }
-          ' > /tmp/recent-contributions.json
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          data = json.loads(Path("/tmp/recent-contributions.json").read_text())
-          if data.get("errors"):
-              raise SystemExit(json.dumps(data["errors"]))
-          c = data["data"]["user"]["contributionsCollection"]
-          print("Contribution totals:", json.dumps({
-              k: c[k] for k in (
-                  "totalCommitContributions", "totalIssueContributions",
-                  "totalPullRequestContributions", "totalPullRequestReviewContributions",
-                  "restrictedContributionsCount", "hasAnyRestrictedContributions",
-                  "earliestRestrictedContributionDate", "latestRestrictedContributionDate"
-              )
-          }))
-          cal = c["contributionCalendar"]
-          print("GitHub calendar total for queried range:", cal["totalContributions"])
-          for week in cal["weeks"]:
-              for day in week["contributionDays"]:
-                  print(day["date"], "=>", day["contributionCount"])
-          PY
-
       # GitHub Streak
       # Use GitHub's own contribution calendar. This counts the contribution
       # types GitHub uses on the profile instead of commit-search reconstruction.
       - name: Generate GitHub streak
         env:
-          # Always generate the card. METRICS_TOKEN should have read:user
-          # scope to include private activity; GITHUB_TOKEN is a public-data fallback.
+          # Use a classic PAT with read:user for private contribution data.
+          # GITHUB_TOKEN is a public-data fallback and may omit private activity.
           GH_TOKEN: ${{ secrets.METRICS_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
+          if [[ "$GH_TOKEN" == github_pat_* ]]; then
+            echo "::warning::METRICS_TOKEN is a fine-grained PAT. GitHub's GraphQL contribution collection requires the read:user OAuth scope to include private-repository contributions; use a classic PAT with read:user for a complete streak."
+          fi
           FROM="$(date -u -d '1 year ago' +%Y-%m-%dT00:00:00Z)"
           TO="$(date -u -d 'tomorrow' +%Y-%m-%dT00:00:00Z)"
           gh api graphql -f login=dh6xxn -f from="$FROM" -f to="$TO" -f query='
