@@ -231,28 +231,6 @@ jobs:
             profile/github-snake.svg?palette=github-light
             profile/github-snake-dark.svg?palette=github-dark
 
-      # Stamp every SVG with a valid XML comment before the root element.
-      - name: Mark all profile assets as refreshed
-        run: |
-          python - <<'PY'
-          from datetime import datetime, timezone
-          from pathlib import Path
-          import re
-
-          stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
-          files = sorted(Path('profile').glob('*.svg'))
-          if not files:
-              raise SystemExit('No profile SVG files found')
-          for path in files:
-              text = path.read_text(encoding='utf-8')
-              text = re.sub(r'^[ \\t]*<!-- Profile refreshed: .*? -->[ \\t]*\\n?', '', text, flags=re.MULTILINE)
-              match = re.search(r'<svg\\b', text)
-              if not match:
-                  raise SystemExit(f'{path} is not an SVG')
-              text = text[:match.start()] + f'<!-- Profile refreshed: {stamp} -->\\n' + text[match.start():]
-              path.write_text(text, encoding='utf-8')
-              print(f'Refreshed {path}')
-          PY
       # Verify generated assets
       - name: Verify generated profile assets
         run: |
@@ -267,6 +245,14 @@ jobs:
           test -f profile/github-snake-dark.svg
 
           echo "All required profile assets were generated successfully."
+
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          for path in sorted(Path('profile').glob('*.svg')):
+              ET.parse(path)
+              print(f'Valid SVG XML: {path}')
+          PY
 
           python - <<'PY'
           import xml.etree.ElementTree as ET
