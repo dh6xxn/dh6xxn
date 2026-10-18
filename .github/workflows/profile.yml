@@ -307,12 +307,12 @@ jobs:
               raise SystemExit('No SVG assets found')
           for path in files:
               content = path.read_text(encoding='utf-8')
-              content = re.sub(r'^\\s*<!-- Profile refreshed: .*? -->\\s*', '', content, count=1)
-              match = re.search(r'<svg\\b', content)
+              content = re.sub(r'^\s*<!-- Profile refreshed: .*? -->\s*', '', content, count=1)
+              match = re.search(r'<svg\b', content)
               if not match:
                   raise SystemExit(f'No SVG root found in {path}')
               # Comment is inserted before <svg>, never inside the opening tag.
-              content = content[:match.start()] + f'<!-- Profile refreshed: {stamp} -->\\n' + content[match.start():]
+              content = content[:match.start()] + f'<!-- Profile refreshed: {stamp} -->\n' + content[match.start():]
               path.write_text(content, encoding='utf-8')
               print(f'Refreshed {path}')
           PY
