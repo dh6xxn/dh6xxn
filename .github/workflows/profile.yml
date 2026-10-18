@@ -292,6 +292,30 @@ jobs:
             profile/github-snake.svg?palette=github-light
             profile/github-snake-dark.svg?palette=github-dark
 
+      # Mark every SVG with a daily refresh timestamp BEFORE its root element.
+      # This makes the refresh visible in Git without changing SVG markup.
+      - name: Mark profile assets refreshed
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from pathlib import Path
+          import re
+
+          stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
+          files = sorted(Path('profile').glob('*.svg'))
+          if not files:
+              raise SystemExit('No SVG assets found')
+          for path in files:
+              content = path.read_text(encoding='utf-8')
+              content = re.sub(r'^\\s*<!-- Profile refreshed: .*? -->\\s*', '', content, count=1)
+              match = re.search(r'<svg\\b', content)
+              if not match:
+                  raise SystemExit(f'No SVG root found in {path}')
+              # Comment is inserted before <svg>, never inside the opening tag.
+              content = content[:match.start()] + f'<!-- Profile refreshed: {stamp} -->\\n' + content[match.start():]
+              path.write_text(content, encoding='utf-8')
+              print(f'Refreshed {path}')
+          PY
       # Verify generated assets
       - name: Verify generated profile assets
         run: |
@@ -306,14 +330,6 @@ jobs:
           test -f profile/github-snake-dark.svg
 
           echo "All required profile assets were generated successfully."
-
-          python - <<'PY'
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
-          for path in sorted(Path('profile').glob('*.svg')):
-              ET.parse(path)
-              print(f'Valid SVG XML: {path}')
-          PY
 
           python - <<'PY'
           import xml.etree.ElementTree as ET
